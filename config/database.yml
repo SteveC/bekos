@@ -23,6 +23,4 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  url: <%= ENV.fetch("DATABASE_URL", "").gsub(/postgres/, 'postgis') %>
   
