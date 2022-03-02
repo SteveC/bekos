@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.find_or_create_by!(login: 'dmitry') { _1.password = '123456' }
-User.find_or_create_by!(login: 'alice')  { _1.password = '123456' }
-
 Language.find_or_create_by! code: 'en', name: 'English'
 Language.find_or_create_by! code: 'fe', name: 'French'
 Language.find_or_create_by! code: 'de', name: 'German'
 Language.find_or_create_by! code: 'ru', name: 'Russian'
 Language.find_or_create_by! code: 'cn', name: 'Chinese'
+
+User.find_or_create_by!(login: 'dmitry') { _1.password = '123456'; _1.language_codes = %w[en de ru] }
+User.find_or_create_by!(login: 'alice')  { _1.password = '123456'; _1.language_codes = %w[en de ru] }

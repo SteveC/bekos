@@ -10,7 +10,7 @@
                     <i class="fa fa-comments-o"></i>
                     <h3>Bekos App</h3>
                 </div>
-                <ul class="chat-list">
+                <ul class="chat-list" data-controller="language-selector" data-language-selector-current-value="<%= current_user.languages.to_a.first&.code %>">
                     <li class="">
                         <a class="lobby" href="#lobby.html">
                             <h4>
@@ -19,40 +19,19 @@
                             </h4>
                         </a>
                     </li>
-                    <li id="english" onclick="clickHandler('english')">
-                        <a href="#chat_room.html">
-                            <i class="fa fa-rocket" ></i>
-                            <span >English</span>
-                            <i class="fa fa-times pull-right"></i>
+                    
+                    <% current_user.languages.each do |language| %>
+                      <li 
+                        data-language-selector-target="item" 
+                        data-lang="<%= language.code %>"
+                      > 
+                        <a href="#chat_room.html" data-action="language-selector#select">
+                          <i class="fa fa-rocket" ></i>
+                          <span ><%= language.name %></span>
+                          <i class="fa fa-times pull-right"></i>
                         </a>
-                    </li>
-                     <script> 
-                        const clickHandler = (e)=> {
-                                const a= document.getElementById(e)
-                            console.log(a.innerText)
-                                }
-                    </script>
-                    <li class="active">
-                        <a href="#chat_room.html">
-                            <i class="fa fa-rocket"></i>
-                            <span>Spanish</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat_room.html">
-                            <i class="fa fa-rocket"></i>
-                            <span>Chinese</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat_room.html">
-                            <i class="fa fa-rocket"></i>
-                            <span>Italian</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
+                      </li>
+                    <% end %>
                 </ul>
                 <ul class="chat-list chat-user">
                     <li>
