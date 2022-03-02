@@ -1,15 +1,17 @@
 h1.mx-2 Welcome to Bekos
 
 .wrapper
-  = form_with url: signup_path, class: 'form-signin', data: { turbo: false }, html: {  } do |f|
+  = form_with scope: :user, url: signup_path, class: 'form-signin', data: { turbo: false }, html: {  } do |f|
     h2.form-signin-heading Signup
-
+  
     = flash_alert
-    
-    = f.text_field :login, class: 'form-control', placeholder: 'Login', required: true
-    = f.password_field :password, class: 'form-control', placeholder: 'Password', required: true
-
-    div
+  
+    = f.text_field :login, class: 'form-control my-1', placeholder: 'Login', required: true
+    = f.password_field :password, class: 'form-control my-1', placeholder: 'Password', required: true
+    = f.text_field :first_name, class: 'form-control my-1', placeholder: 'First Name', required: true
+    = f.text_field :last_name,  class: 'form-control my-1', placeholder: 'Last Name'
+  
+    div.my-4
       = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
       span.mx-2 or
       = link_to "Login", login_path

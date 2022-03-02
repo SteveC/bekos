@@ -3,7 +3,7 @@ class SignupsController < ApplicationController
   end
   
   def create
-    @user = User.create! login: params[:login], password: params[:password]
+    @user = User.create! params[:user].slice(:login, :password, :first_name, :last_name).permit!
     session[:user_id] = @user.id
     flash.notice = "Thank you for sign up!"
     redirect_to chat_path
