@@ -4,10 +4,8 @@ h1.mx-2 Welcome to Bekos
   = form_with url: signup_path, class: 'form-signin', data: { turbo: false }, html: {  } do |f|
     h2.form-signin-heading Signup
 
-    - if flash.alert
-      .alert.alert-danger
-        = flash.alert
-
+    = flash_alert
+    
     = f.text_field :login, class: 'form-control', placeholder: 'Login', required: true
     = f.password_field :password, class: 'form-control', placeholder: 'Password', required: true
 

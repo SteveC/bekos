@@ -1,0 +1,12 @@
+.wrapper
+  = form_with url: user_settings_path, method: :patch, class: 'form-signin', data: { turbo: false } do |f|
+    h2.form-signin-heading Settings
+    = flash_alert
+
+    div
+      = f.label :language_codes, 'Languages:', class: 'form-label'
+      = f.select :language_codes, Language.order(:name).map { [_1.name, _1.code] }, { selected: current_user.language_codes }, class: 'form-select', multiple: true
+
+    div.my-3
+      = f.submit 'Save', class: 'btn btn-lg btn-primary me-2'
+      = link_to "Cancel", root_path, class: 'btn btn-lg btn-secondary'

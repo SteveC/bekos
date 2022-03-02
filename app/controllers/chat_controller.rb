@@ -1,5 +1,5 @@
 class ChatController < ApplicationController
-  before_action :require_authentication!
+  require_authentication!
   
   def show
   end
