@@ -1,0 +1,18 @@
+h1.mx-2 Welcome to Bekos
+
+.wrapper
+  = form_with url: session_path, class: 'form-signin', data: { turbo: false } do |f|
+    h2.form-signin-heading Please login
+
+    - if flash.alert
+      .alert.alert-danger
+        = flash.alert
+
+    = f.text_field :login, class: 'form-control', placeholder: 'Login', required: true
+    = f.password_field :password, class: 'form-control', placeholder: 'Password', required: true
+
+    div
+      = f.submit 'Login', class: 'btn btn-lg btn-primary btn-block'
+      span.mx-2 or
+      = link_to "Sign up", signup_path
+    
