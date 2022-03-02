@@ -1,0 +1,20 @@
+<h1>Welcome to Bekos</h1>
+
+<div class="wrapper">
+  <%= form_with url: session_path, class: 'form-signin', data: { turbo: false } do |f| %>
+    <h2 class="form-signin-heading">Please login</h2>
+
+    <% if flash.alert %>
+      <div class="alert alert-danger">
+        <%= flash.alert %>
+      </div>
+    <% end %>
+
+    <input type="text" class="form-control" name="login" placeholder="Email Address" required="" autofocus="" />
+    <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+    <!-- <label class="checkbox">
+      <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+    </label> -->
+    <%= f.submit 'Login', class: 'btn btn-lg btn-primary btn-block' %>
+  <% end %>
+</div>
