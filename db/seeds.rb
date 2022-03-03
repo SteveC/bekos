@@ -12,5 +12,12 @@ Language.find_or_create_by! code: 'de', name: 'German'
 Language.find_or_create_by! code: 'ru', name: 'Russian'
 Language.find_or_create_by! code: 'cn', name: 'Chinese'
 
-User.find_or_create_by!(login: 'steve') { _1.first_name = 'Steve'; _1.last_name = 'Jobs';  _1.password = '123456'; _1.language_codes = %w[en de ru] }
-User.find_or_create_by!(login: 'bill')  { _1.first_name = 'Bill';  _1.last_name = 'Gates'; _1.password = '123456'; _1.language_codes = %w[en de ru] }
+steve = User.find_or_create_by!(login: 'steve') { _1.first_name = 'Steve'; _1.last_name = 'Jobs';  _1.password = '123456'; _1.language_codes = %w[en de ru] }
+bill  = User.find_or_create_by!(login: 'bill')  { _1.first_name = 'Bill';  _1.last_name = 'Gates'; _1.password = '123456'; _1.language_codes = %w[en de ru] }
+
+15.times do
+  %w[en de].each do |lang|
+    Language[lang].thread!.messages.create user: steve, text: 's' * rand(30)
+    Language[lang].thread!.messages.create user: bill,  text: 'b' * rand(30)    
+  end
+end

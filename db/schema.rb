@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_02_204412) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_03_183614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.bigint "thread_id", null: false
+    t.bigint "user_id", null: false
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["thread_id"], name: "index_chat_messages_on_thread_id"
+    t.index ["user_id"], name: "index_chat_messages_on_user_id"
+  end
+
+  create_table "chat_threads", force: :cascade do |t|
+    t.string "language_code"
+    t.bigint "user_ids", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_code"], name: "index_chat_threads_on_language_code", unique: true
+    t.index ["user_ids"], name: "index_chat_threads_on_user_ids", using: :gin
+  end
 
   create_table "languages", primary_key: "code", id: :string, force: :cascade do |t|
     t.string "name"
@@ -29,4 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_02_204412) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "chat_messages", "chat_threads", column: "thread_id"
+  add_foreign_key "chat_messages", "users"
 end

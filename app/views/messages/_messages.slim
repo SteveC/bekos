@@ -1,0 +1,5 @@
+- @messages.each do |message| 
+  .group-rom
+    .first-part.odd= message.user.full_name
+    .second-part= message.text
+    .third-part= l message.created_at, format: :hhmm

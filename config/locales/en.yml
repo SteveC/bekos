@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+
+  time: 
+    formats:
+      hhmm: '%H:%M'
+    

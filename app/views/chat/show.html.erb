@@ -10,7 +10,7 @@
                     <i class="fa fa-comments-o"></i>
                     <h3>Bekos App</h3>
                 </div>
-                <ul class="chat-list" data-controller="language-selector" data-language-selector-current-value="<%= current_user.languages.to_a.first&.code %>">
+                <ul class="chat-list">
                     <li class="">
                         <a class="lobby" href="#lobby.html">
                             <h4>
@@ -21,11 +21,8 @@
                     </li>
                     
                     <% current_user.languages.each do |language| %>
-                      <li 
-                        data-language-selector-target="item" 
-                        data-lang="<%= language.code %>"
-                      > 
-                        <a href="#chat_room.html" data-action="language-selector#select">
+                      <li class="<%= class_names active: params[:language_id] == language.code %>"> 
+                        <a href="<%= language_messages_path(language.code) %>">
                           <i class="fa fa-rocket" ></i>
                           <span ><%= language.name %></span>
                           <i class="fa fa-times pull-right"></i>
@@ -85,44 +82,9 @@
                     <a href="/video_call.html"> <img src="/icons.jpeg" alt="" width="90" height="57" class="pull-right position"/></a>
                  
                 </div>
-                <div class="group-rom">
-                    <div class="first-part odd">Jonathan Smith</div>
-                    <div class="second-part">Hola Cendy</div>
-                    <div class="third-part">12:30</div>
-                </div>
-                <div class="group-rom">
-                    <div class="first-part">Cendy Andrianto</div>
-                    <div class="second-part">Hola!</div>
-                    <div class="third-part">12:31</div>
-                </div>
-                <div class="group-rom">
-                    <div class="first-part odd">Jonathan Smith</div>
-                    <div class="second-part">I'm learning spanish I'm level A2</div>
-                    <div class="third-part">12:32</div>
-                </div>
-                <div class="group-rom">
-                    <div class="first-part">Cendy Andrianto</div>
-                    <div class="second-part">Fantastic I can help you</div>
-                    <div class="third-part">12:32</div>
-                </div>
-<!--
-                <div class="group-rom">
-                    <div class="first-part odd">Jonathan Smith</div>
-                    <div class="second-part"><a href="##">search_scb_dialog.jpg</a> <span class="text-muted">46.8KB</span> <p>
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-responsive"></p></div>
-                    <div class="third-part">12:32</div>
-                </div>
--->
-                <div class="group-rom">
-                    <div class="first-part">Cendy Andrianto</div>
-                    <div class="second-part">Gracias</div>
-                    <div class="third-part">12:32</div>
-                </div>
-                <div class="group-rom">
-                    <div class="first-part odd">Jonathan Smith</div>
-                    <div class="second-part"> Como estas :) </div>
-                    <div class="third-part">12:33</div>
-                </div>
+                
+                <%= render 'messages/messages' %>
+                
                 <footer>
                     <form target="#here" method="post">
                     <div id="chat-input" class="chat-txt">
