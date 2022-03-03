@@ -5,7 +5,7 @@ class SignupsController < ApplicationController
   def create
     @user = User.create! params[:user].slice(:login, :password, :first_name, :last_name).permit!
     session[:user_id] = @user.id
-    flash.notice = "Thank you for sign up!"
+    flash.notice = "Thank you for signing up!"
     redirect_to chat_path
 
   rescue ActiveRecord::RecordInvalid => e
