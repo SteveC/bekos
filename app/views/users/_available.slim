@@ -1,0 +1,14 @@
+.invite-row
+  h4.pull-left People
+
+ul.chat-available-user
+  - User.all.each do |user|
+    li
+      a href="#"
+        i class="fa fa-circle text-muted me-1"
+        => user.full_name
+        / span.text-muted 3h:22m
+
+/ <i class="fa fa-circle text-danger"></i>
+/ <i class="fa fa-circle text-warning"></i>
+/ <i class="fa fa-circle text-muted"></i>

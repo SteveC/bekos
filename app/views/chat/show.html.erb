@@ -1,15 +1,16 @@
-<div class="container bootstrap snippets bootdey.com">
-<div class="row">
-    <div class="col-md-12">
-        <!-- start:chat room -->
-        <div class="box">
-            <div class="chat-room">
-            <!-- start:aside kiri chat room -->
-            <aside class="kiri-side">
+<div class="container bootstrap snippets bootdey.com vh-100">
+<div class="row h-100">
+    <div class="col-md-12 h-100">
+
+        <div class="box h-100">
+            <div class="chat-room h-100">
+
+            <aside class="rooms-side">
                 <div class="user-head">
                     <i class="fa fa-comments-o"></i>
                     <h3>Bekos App</h3>
                 </div>
+                
                 <ul class="chat-list">
                     <li class="">
                         <a class="lobby" href="#lobby.html">
@@ -30,36 +31,19 @@
                       </li>
                     <% end %>
                 </ul>
+                
                 <ul class="chat-list chat-user">
+                  <% User.all.each do |user| %>
                     <li>
-                        <a href="##">
-                            <i class="fa fa-circle text-success"></i>
-                            <span>Jonathan Smith</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
+                      <a href="#">
+                        <i class="fa fa-circle text-muted"></i>
+                        <span><%= user.full_name %></span>
+                        <i class="fa fa-times pull-right"></i>
+                      </a>
                     </li>
-                    <li>
-                        <a href="##">
-                            <i class="fa fa-circle text-success"></i>
-                            <span>Jhon Doe</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="##">
-                            <i class="fa fa-circle text-muted"></i>
-                            <span>Cendy Andrianto</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="##">
-                            <i class="fa fa-circle text-danger"></i>
-                            <span>Anjelina Joe</span>
-                            <i class="fa fa-times pull-right"></i>
-                        </a>
-                    </li>
+                  <% end %>
                 </ul>
+                
                 <footer>
                     <a class="chat-avatar" href="#javascript:;">
                         <img alt="" src="https://bootdey.com/img/Content/avatar/avatar1.png">
@@ -73,17 +57,18 @@
                     </a>
                 </footer>
             </aside>
-            <!-- end:aside kiri chat room -->
 
-            <!-- start:aside tengah chat room -->
-            <aside class="tengah-side">
+
+
+            <aside class="messages-side d-flex flex-column w-100 vh-100">
                 <div class="chat-room-head">
-                    <h3>Spanish</h3>
+                    <h3 class="">Spanish</h3>
                     <a href="/video_call.html"> <img src="/icons.jpeg" alt="" width="90" height="57" class="pull-right position"/></a>
-                 
                 </div>
                 
-                <%= render 'messages/messages' %>
+                <div class="messages-list flex-grow-1 overflow-scroll">
+                  <%= render 'messages/messages' %>
+                </div>                
                 
                 <footer>
                     <form target="#here" method="post">
@@ -98,75 +83,22 @@
                         </form>
                 </footer>
             </aside>
-            <!-- end:aside tengah chat room -->
 
-            <!-- start:aside kanan chat room -->
-            <aside class="kanan-side">
+
+
+
+            <aside class="people-side">
                 <div class="user-head">
                   <a href="/logout"        class="chat-tools btn-outline-secondary"><i class="fa fa-sign-out"></i> </a>
                   <a href="/user/settings" class="chat-tools btn-outline-success">  <i class="fa fa-cog"></i> </a>
                 </div>
-                <div class="invite-row">
-                    <h4 class="pull-left">People</h4>
-                </div>
-                <ul class="chat-available-user">
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-success"></i>
-                            Jonathan Smith
-                            <span class="text-muted">3h:22m</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-success"></i>
-                            Jhone Due
-                            <span class="text-muted">1h:2m</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-success"></i>
-                            Cendy Andrianto
-                            <span class="text-muted">2h:32m</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-danger"></i>
-                            Surya Nug
-                            <span class="text-muted">3h:22m</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-warning"></i>
-                            Monke Lutfy
-                            <span class="text-muted">1h:12m</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-muted"></i>
-                            Steve Jobs
-                            <!--<span class="text-muted">3h:22m</span>-->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#chat-room.html">
-                            <i class="fa fa-circle text-muted"></i>
-                            Jonathan Smith
-                            <!--<span class="text-muted">3h:22m</span>-->
-                        </a>
-                    </li>
-                </ul>
-
+                <%= render 'users/available' %>
             </aside>
-            <!-- end:aside kanan chat room -->
+
 
             </div>
         </div>
-        <!-- end:chat room -->
+
     </div>
 </div>
 </div>
