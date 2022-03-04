@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-import LanguageSelectorController from "./language_selector_controller"
+import ChatInputController from "./chat_input_controller.js"
+application.register("chat-input", ChatInputController)
 
+import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
+
+import LanguageSelectorController from "./language_selector_controller.js"
 application.register("language-selector", LanguageSelectorController)

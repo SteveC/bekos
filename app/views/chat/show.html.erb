@@ -33,7 +33,7 @@
                 </ul>
                 
                 <ul class="chat-list chat-user">
-                  <% User.all.each do |user| %>
+                  <% @users.each do |user| %>
                     <li>
                       <a href="#">
                         <i class="fa fa-circle text-muted"></i>
@@ -61,8 +61,8 @@
 
 
             <aside class="messages-side d-flex flex-column w-100 vh-100">
-                <div class="chat-room-head">
-                    <h3 class="">Spanish</h3>
+                <div class="chat-room-head p-0">
+                    <h3 class="p-3">Spanish</h3>
                     <a href="/video_call.html"> <img src="/icons.jpeg" alt="" width="90" height="57" class="pull-right position"/></a>
                 </div>
                 
@@ -71,16 +71,16 @@
                 </div>                
                 
                 <footer>
-                    <form target="#here" method="post">
-                    <div id="chat-input" class="chat-txt">
-                        <input type="text" class="form-control">
+                  <form data-controller="chat-input" class="d-flex" action="/messages" data-action="chat-input#post" data-thread-id="<%= @thread.id %>">
+                    <div class="flex-grow-1 me-1">
+                      <input type="text" class="form-control" data-chat-input-target="input">
                     </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-white" data-original-title="" title=""><i class="fa fa-meh-o"></i></button>
-                        <button type="button" class="btn btn-white" data-original-title="" title=""><i class=" fa fa-paperclip"></i></button>
-                    </div>
-                    <button type="submit" onsubmit="myfunction" class="btn btn-danger" data-original-title="" title="">Send</button>
-                        </form>
+                    <!-- <div class="btn-group">
+                      <button type="button" class="btn btn-white"><i class="fa fa-meh-o"></i></button>
+                      <button type="button" class="btn btn-white"><i class="fa fa-paperclip"></i></button>
+                    </div> -->
+                    <button type="submit" class="btn btn-danger">Send</button>
+                  </form>
                 </footer>
             </aside>
 

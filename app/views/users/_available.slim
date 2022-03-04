@@ -2,7 +2,7 @@
   h4.pull-left People
 
 ul.chat-available-user
-  - User.all.each do |user|
+  - @users.each do |user|
     li
       a href="#"
         i class="fa fa-circle text-muted me-1"
