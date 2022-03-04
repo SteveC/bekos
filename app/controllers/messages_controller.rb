@@ -16,11 +16,4 @@ class MessagesController < ApplicationController
     
     render 'chat/show'
   end
-  
-  def create
-    @thread = ChatThread.find(params[:thread_id])
-    @thread.messages.create! user: current_user, text: params[:text].to_s.strip
-    
-    render json: { ok: true }
-  end
 end

@@ -1,0 +1,4 @@
+.group-rom data-message-id=message.id
+  .first-part.odd= message.user.full_name
+  .second-part= message.text
+  .third-part= l message.created_at, format: :hhmm

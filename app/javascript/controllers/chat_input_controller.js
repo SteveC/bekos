@@ -2,12 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 import consumer from "../channels/consumer"
 
 export default class extends Controller {
-  static targets = [ 'input', 'button' ]
+  static targets = [ 'input', 'list' ]
 
   get threadId() { return this.element.dataset.threadId }
   
   connect() {
     this.subscribe()
+    this.scrollToEnd()
+  }
+  
+  disconnect() {
+    this.unsubscribe()
   }
   
   post(e) {
@@ -15,23 +20,27 @@ export default class extends Controller {
     let value = this.inputTarget.value
     if ($.trim(value) == '') return
     
-    $.post("/messages", { text: value, thread_id: this.threadId }, res => {
-      
-    })
+    this.subscription.post({ text: value })
   }
   
   subscribe() {
-    consumer.subscriptions.create({ channel: "ChatChannel", thread_id: this.threadId }, {
-      connected() { },
-      disconnected() { },
+    let self = this
+    this.subscription = consumer.subscriptions.create({ channel: "ChatChannel", thread_id: this.threadId }, {
+      post(data) { this.perform('post', data) },
 
       received(data) {
-        console.log(data)
+        self.listTarget.insertAdjacentHTML('beforeend', data.html)
+        self.inputTarget.value = ''
+        self.scrollToEnd(true)
       },
-
-      sync: function() {
-        return this.perform('sync');
-      }
     })
+  }
+  
+  unsubscribe() {
+    consumer.subscriptions.remove(this.subscription)
+  }
+  
+  scrollToEnd(smooth = false) {
+    this.listTarget.scroll({ top: this.listTarget.scrollHeight, behavior: smooth ? 'smooth' : 'auto' })
   }
 }

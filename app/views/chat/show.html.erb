@@ -2,7 +2,7 @@
 <div class="row h-100">
     <div class="col-md-12 h-100">
 
-        <div class="box h-100">
+        <div class="box h-100" data-controller="chat-input" data-thread-id="<%= @thread.id %>">
             <div class="chat-room h-100">
 
             <aside class="rooms-side">
@@ -66,12 +66,12 @@
                     <a href="/video_call.html"> <img src="/icons.jpeg" alt="" width="90" height="57" class="pull-right position"/></a>
                 </div>
                 
-                <div class="messages-list flex-grow-1 overflow-scroll">
+                <div class="messages-list flex-grow-1 overflow-scroll" data-chat-input-target="list">
                   <%= render 'messages/messages' %>
                 </div>                
                 
                 <footer>
-                  <form data-controller="chat-input" class="d-flex" action="/messages" data-action="chat-input#post" data-thread-id="<%= @thread.id %>">
+                  <form class="d-flex" action="/messages" data-action="chat-input#post">
                     <div class="flex-grow-1 me-1">
                       <input type="text" class="form-control" data-chat-input-target="input">
                     </div>
