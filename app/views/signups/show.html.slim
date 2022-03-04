@@ -1,7 +1,7 @@
 h1.mx-2 Welcome to Bekos
 
 .wrapper
-  = form_with scope: :user, url: signup_path, class: 'form-signin', data: { turbo: false }, html: {  } do |f|
+  = form_with scope: :user, url: signup_path, class: 'form-signin', id: 'signup-form', data: { turbo: false }, html: {  } do |f|
     h2.form-signin-heading Signup
   
     = flash_alert
@@ -12,6 +12,6 @@ h1.mx-2 Welcome to Bekos
     = f.text_field :last_name,  class: 'form-control my-1', placeholder: 'Last Name'
   
     div.my-4
-      = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block'
+      = f.submit 'Sign up', class: 'btn btn-lg btn-primary btn-block', id: 'signup-btn'
       span.mx-2 or
       = link_to "Login", login_path
