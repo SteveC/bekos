@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'messages/index'
   resource :session, only: %i[show create destroy]
   resource :signup, only: %i[show create]
   
@@ -17,4 +16,6 @@ Rails.application.routes.draw do
   get 'chat'   => 'chat#show'
   
   root to: 'chat#show'
+  
+  mount ActionCable.server => '/cable'  
 end
