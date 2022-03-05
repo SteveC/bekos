@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     end
     
     @messages = @thread.messages.order(:created_at).includes(:user)
-    @users = User.all.to_a
+    @users = User.all.includes(:chat_status).to_a
     
     render 'chat/show'
   end

@@ -3,12 +3,10 @@
 
 ul.chat-available-user
   - @users.each do |user|
+    - status = user.chat_status&.status
     li
       a href="#"
-        i class="fa fa-circle text-muted me-1"
+        i class="fa fa-circle me-1 #{ chat_status_for_user status }"
         => user.full_name
-        / span.text-muted 3h:22m
-
-/ <i class="fa fa-circle text-danger"></i>
-/ <i class="fa fa-circle text-warning"></i>
-/ <i class="fa fa-circle text-muted"></i>
+        - unless status == :offline
+          span.text-black-50= l user.chat_status.last_seen_at, format: :hhmm

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_03_183614) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_05_143648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_183614) do
     t.datetime "created_at", precision: nil
   end
 
+  create_table "user_chat_statuses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "current_thread_id"
+    t.string "manual_status"
+    t.datetime "updated_at", precision: nil
+    t.index ["current_thread_id"], name: "index_user_chat_statuses_on_current_thread_id"
+    t.index ["user_id"], name: "index_user_chat_statuses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "login", null: false
     t.string "first_name"
@@ -50,4 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_183614) do
 
   add_foreign_key "chat_messages", "chat_threads", column: "thread_id"
   add_foreign_key "chat_messages", "users"
+  add_foreign_key "user_chat_statuses", "chat_threads", column: "current_thread_id"
+  add_foreign_key "user_chat_statuses", "users"
 end

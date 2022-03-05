@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  current_thread: one
+  last_seen_at: 2022-03-05 17:36:48
+  manual_status: MyString
+
+two:
+  user: two
+  current_thread: two
+  last_seen_at: 2022-03-05 17:36:48
+  manual_status: MyString

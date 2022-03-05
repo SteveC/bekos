@@ -36,7 +36,7 @@
                   <% @users.each do |user| %>
                     <li>
                       <a href="#">
-                        <i class="fa fa-circle text-muted"></i>
+                        <i class="fa fa-circle <%= chat_status_for_user user.chat_status&.status %>"></i>
                         <span><%= user.full_name %></span>
                         <i class="fa fa-times pull-right"></i>
                       </a>
