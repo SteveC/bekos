@@ -2,6 +2,7 @@ class SignupsController < ApplicationController
   def show
   end
   
+  # new user signup flow to create user and reject on duplicate username
   def create
     @user = User.create! params[:user].slice(:login, :password, :first_name, :last_name).permit!
     session[:user_id] = @user.id
