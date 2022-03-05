@@ -1,7 +1,9 @@
 class MessagesController < ApplicationController
+  # make sure user is logged in
   require_authentication!
   skip_before_action :verify_authenticity_token
 
+  # get the messages for a specific language and show them
   def index
     @thread = if params[:language_id]
       language = Language.find(params[:language_id])
