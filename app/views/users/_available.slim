@@ -3,7 +3,7 @@
 
 ul.chat-available-user
   - @users.each do |user|
-    - status = user.chat_status&.status
+    - status = user.chat_status&.status || :offline
     li
       a href="#"
         i class="fa fa-circle me-1 #{ chat_status_for_user status }"
