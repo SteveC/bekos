@@ -6,8 +6,8 @@ A MVP for a system to let people meet and exchange languages. At this stage, onl
 
 Install rails & ruby, set up a database system (postgres) with a user/pass and db. Edit config/database/yml. then:
 
-`bundle`
-`rake db:migrate`
+* `bundle`
+* `rake db:migrate`
 
 # Running the app
 
