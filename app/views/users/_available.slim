@@ -8,5 +8,5 @@ ul.chat-available-user
       a href="#"
         i class="fa fa-circle me-1 #{ chat_status_for_user status }"
         => user.full_name
-        - unless status == :offline
+        - if user.chat_status && user.chat_status.status != :offline
           span.text-black-50= l user.chat_status.last_seen_at, format: :hhmm
